@@ -1,34 +1,37 @@
-# Sign Language MNIST Classifier
+# ✋ Sign Language MNIST Classifier
 
-A Convolutional Neural Network (CNN) built with TensorFlow/Keras to classify American Sign Language (ASL) letters using the [Sign Language MNIST dataset](https://www.kaggle.com/datasets/datamunge/sign-language-mnist).  
-Achieved **~99.7% validation accuracy** in under 10 epochs.
-
----
-
-## 📖 Project Overview
-The Sign Language MNIST dataset contains **28×28 grayscale images** of hand signs representing **24 ASL letters** (letters `J` and `Z` are excluded because they require motion).  
-This project:
-- Preprocesses the dataset (normalization, reshaping, label remapping).
-- Trains a CNN with data augmentation and learning rate scheduling.
-- Evaluates model performance (accuracy, confusion matrix).
-- Exports the model for deployment (Keras + TFLite).
+A deep learning project that classifies American Sign Language (ASL) hand signs using a **Convolutional Neural Network (CNN)**.  
+Trained on the [Sign Language MNIST dataset](https://www.kaggle.com/datasets/datamunge/sign-language-mnist), this model reaches **99.7% validation accuracy**.
 
 ---
 
-## 🗂️ Dataset
-- **Train samples:** 27,455  
-- **Test samples:** 7,172  
-- **Classes:** 24 (A–Y, excluding J and Z)  
-- **Format:** CSV (each row = label + 784 pixels)
+## 🌟 Highlights
+- 📚 Built and trained a CNN from scratch using **TensorFlow/Keras**  
+- 🖼️ Worked with **28×28 grayscale images** of ASL letters  
+- 🎯 Achieved **state-of-the-art level accuracy** (~99.7%)  
+- 🔄 Applied **data augmentation, batch normalization, dropout** to prevent overfitting  
+- 📱 Exported the model to **TensorFlow Lite (TFLite)** for mobile deployment  
+
+---
+
+## 📂 Dataset Overview
+- **Source:** [Kaggle - Sign Language MNIST](https://www.kaggle.com/datasets/datamunge/sign-language-mnist)  
+- **Train set:** 27,455 images  
+- **Test set:** 7,172 images  
+- **Classes:** 24 (letters A–Y, excluding J and Z since they require motion)  
+- **Format:** CSV files (`label` + 784 pixel values)
 
 ---
 
 ## 🧠 Model Architecture
+
 ```text
-Input (28×28×1)
-→ Conv2D(32, 3×3) + ReLU + BatchNorm + MaxPool(2×2)
-→ Conv2D(64, 3×3) + ReLU + BatchNorm + MaxPool(2×2)
-→ Conv2D(128, 3×3) + ReLU + BatchNorm + MaxPool(2×2)
-→ Flatten
-→ Dense(256) + ReLU + Dropout(0.5)
-→ Dense(24) + Softmax
+Input (28×28×1 grayscale image)
+│
+├── Conv2D (32 filters, 3×3) + ReLU + BatchNorm + MaxPool(2×2)
+├── Conv2D (64 filters, 3×3) + ReLU + BatchNorm + MaxPool(2×2)
+├── Conv2D (128 filters, 3×3) + ReLU + BatchNorm + MaxPool(2×2)
+│
+├── Flatten
+├── Dense (256) + ReLU + Dropout (0.5)
+└── Dense (24) + Softmax
